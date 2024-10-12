@@ -1,93 +1,109 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramalan Zodiak</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: bisque;
-            background-image: linear-gradient(to right, pink, rgba(229, 213, 213, 0.758));
-            background-position: center;
-            background-size: cover;
-            color: #333;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #4b0082;
-        }
-        input[type="date"] {
-            padding: 10px;
-            border: 2px solid #4b0082;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4b0082;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #7a1e6d;
-        }
-        .result {
-            margin-top: 30px;
-            font-size: 1.2em;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>&#128519 SAYA AKAN MERAMAL ZODIAK ANDA &#128519</h1>
-    <p>WEBSITE INI DI BUAT SEPENUH HATI UNTUK ANDA DARI ANDRE &#9829</p>
-    <p>Masukkan tanggal lahir Anda:</p>
+<div class="container">
+    <h2>Saya Akan Meramal Zodiak Anda</h2> 
+    <footer>
+        <p>Created by Andre</p>
+    </footer> 
+    <label for="birthdate">Masukkan Tanggal lahir Anda:</label>
     <input type="date" id="birthdate">
-    <button onclick="findZodiac()">Cek Zodiak</button>
-    <div class="result" id="result"></div>
+    <button onclick="findZodiac()">Tentukan Zodiak Mu</button>
+    
+    <div class="result" id="zodiacResult"></div>
 
-    <script>
-        function findZodiac() {
-            const birthdate = new Date(document.getElementById("birthdate").value);
-            const month = birthdate.getMonth() + 1; // getMonth() returns month from 0-11
-            const day = birthdate.getDate();
+    <!-- Elemen untuk menampilkan gambar zodiak -->
+    <img id="zodiacImage" src="" alt="Zodiac Image" style="display:none; width: 200px; height: auto;">
+    
+    <!-- Elemen untuk menampilkan deskripsi zodiak -->
+    <div id="zodiacText" style="display:none;"></div>
+</div>
 
-            let zodiacSign = "";
+<script>
+    function findZodiac() {
+        const birthdate = new Date(document.getElementById('birthdate').value);
+        const day = birthdate.getDate();
+        const month = birthdate.getMonth() + 1; // Month is zero-indexed
 
-            if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
-                zodiacSign = "Aquarius, Aquarius Memilliki Lambang penimbang air dan elemen angin. Ciri Aquarius adalah suka kebebasan dan tidak suka diatur, mereka memiliki banyak ide atau pikiran sendiri dalam menjalani sebuah kehidupan, karier, keluarga dan asmaranya. Karena sifat bebasnya ini, maka Aquarius memiliki pemikiran yang terbuka, wawasan yang luas dan bijaksana. Karakter Aquarius adalah penuh kharisma sehingga menarik kehidupan orang lain. (22 Jan - 18 Feb)";
-            } else if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) {
-                zodiacSign = "Pisces, Pisces memiliki lambang ikan dan elemen air. Pisces memiliki ciri yang mudah terharu dan labil. Karakternya dikenal sebagai tanda yang yang cantik luar dan dalam. Pisces mudah sekali berempati, menempatkan dirinya di posisi orang lain sehingga ia bisa lebih memahami dan merasakan penderitaan orang lain. Seorang Pisces juga sangat kreatif, peka terhadap orang lain dan tidak pernah mementingkan dirinya sendiri. (19 Feb - 20 Mar)";
-            } else if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
-                zodiacSign = "Aries, Aries memiliki lambang domba dan berelemen api. Sifat murah hati dari Aries sering kali menjadikannya sosok panutan. Meskipun memiliki sifat yang keras, Aries selalu rela untuk berkorban bagi orang terdekatnya. Tak hanya itu, karakter Aries yang mudah bergaul dengan banyak orang, membuatnya memiliki kesempatan untuk sukses yang tinggi. Kamu cocok untuk bekerja di berbagai banyak bidang. (21 Mar - 19 Apr)";
-            } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
-                zodiacSign = "Taurus, Taurus. Memiliki lambang Banteng atau Sapi Jantan. Taurus berelemen tanah. Taurus memiliki sifat yang cerdas dan memahami semua konsekuensi atas pilihan hidupnya. Taurus mudah marah, apabila kemarahannya memuncak maka jangan pernah mencoba menasehatinya karena justru Taurus semakin membencinya. Menjadi jurnalistik, pelukis, dan pekerjaan yang berhubungan dengan seni sangat cocok untuk Taurus. (20 Apr - 20 Mei)";
-            } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
-                zodiacSign = "Gemini, Gemini Memiliki lambang saudara kembar dan elemen angin. Sifatnya yang tidak mudah ditebak, seringkali membuat bingung orang terdekatnya. Kecerdasan Gemini adalah daya tarik utama pemilik zodiak ini. Pesonanya yang menawan membuatnya banyak dikagumi oleh orang terdekatnya, meskipun sering bersikap kebalikannya di depan orang tersayangnya sekali pun. Gemini memiliki ciri tidak mudah puas dengan hidupnya, ia akan selalu mencari yang terbaik untuk dirinya. (21 Mei - 20 Jun)";
-            } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
-                zodiacSign = "Cancer, Cancer Lambang dari zodiak ini adalah kepiting. Sifat Cancer adalah memiliki welas asih yang tinggi. Ia rela melakukan apa saja agar orang terdekatnya bahagia. Gemar mengejar hal kecil dan mengabaikan hal-hal besar adalah ciri dari Cancer. Tak hanya itu, Cancer memiliki sifat yang setia. Ia sangat memedulikan pasangan dan keluarga. Kebahagiaan orang terdekatnya adalh sumber bahagianya. (21 Jun - 22 Jul)";
-            } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
-                zodiacSign = "Leo, Lambang zodiak Leo adalah singa dan berelemen api. Tak heran, Leo memiliki sifat yang suka memerintah. Ia tak segan marah kepada siapa saja yang menghalangi hidupnya. Bagi Leo memberi nasihat kepada orang lain adalah kesenangan baginya, meskipun belum tentu ia menjalaninya. Leo sangat cocok dijadikan seorang pemimpin, kemampuannya beradaptasi membuatnya bisa bekerja di berbagai bidang. (23 Jul - 22 Agu)";
-            } else if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) {
-                zodiacSign = "Virgo, Virgo Memiliki Lambang zodiak Virgo adalah sang perawan dan memiliki elemen tanah. Sifat Virgo adalah penurut dan berhati lembut. Ia menyukai ketenangan. Ciri khas Virgo adalah sifat egois dan keras kepalanya. Ia selalu mengutamakan kepentingannya dan tidak peduli dengan orang lain. Meskipun demikian, Virgo sangat teliti dan bisa menyimpan rahasia dengan baik. Tak heran, Virgo adalah tujuan untuk teman terdekatnya saat butuh didengarkan. (23 Agu - 22 Sep)";
-            } else if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) {
-                zodiacSign = "Libra, Lambang zodiak Libra adalah timbangan dan berelemen udara. Timbangan mewakili sisi kehidupan yang seimbang, teratur, setara, dan adil. Ini sangat merepresentasikan pribadi Libra. Ia tahu cara menemukan keseimbangan dan harmoni dalam hidup. Dalam hal apapun, Libra akan selalu menjadi sosok yang seimbang dan melakukan hal sama rata. Selain itu, Libra juga dikenal sebagai penasihat yang baik. (23 Sep - 22 Okt)";
-            } else if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) {
-                zodiacSign = "Scorpio,Lambang zodiak Scorpio adalah kalajengking dan memiliki elemen air. Sifat Scorpio dikenal sebagai sosok yang tekun, ambisius, dan pekerja keras. Ia juga sangat dermawan, rendah hati dan setia kawan. Karakter yang paling kuat dari Scorpio adalah intuisinya yang selalu tepat dan selalu mengikuti kata hati. Seorang Scorpio dapat dengan mudah membuat keputusan karena kekuatan instingnya ini. (23 Okt - 21 Nov)";
-            } else if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) {
-                zodiacSign = "Sagitarius, Sagitarius memiliki lambang pemanah dan berelemen api. Karakter Sagitarius memiliki kepribadian yang bebas dan suka berpetualang. Sagitarius punya kemampuan membuat hal paling membosankan menjadi hal yang paling menyenangkan. Sisi kepribadian yang hangat membuat orang lain merasa nyaman saat di dekatnya. (22 Nov - 21 Des)";
-            } else if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
-                zodiacSign = "Capricorn, Capricorn Ia memiliki lambang kambing laut dan elemen tanah. Karakter Capricorn sangat realistis dan berpikir kritis. Ciri utamanya adalah suka pekerja keras untuk mencapai tujuan hidupnya. Capricorn memiliki tekad yang kuat untuk melakukan segala sesuatu. (22 Des - 19 Jan)";
-            } else {
-                zodiacSign = "Tanggal tidak valid.";
-            }
-
-            document.getElementById("result").innerText = "Zodiak Anda Adalah: " + zodiacSign;
+        if (isNaN(birthdate)) {
+            alert('Please enter a valid date');
+            return;
         }
-    </script>
+
+        let zodiacSign = '';
+        let zodiacImage = '';
+        let zodiacDescription = '';
+
+        // Menentukan zodiak berdasarkan tanggal lahir
+        if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
+            zodiacSign = 'Aquarius';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/aquarius.jpg';
+            zodiacDescription = 'Aquarius Memilliki Lambang penimbang air dan elemen angin. Ciri Aquarius adalah suka kebebasan dan tidak suka diatur, mereka memiliki banyak ide atau pikiran sendiri dalam menjalani sebuah kehidupan, karier, keluarga dan asmaranya. Karena sifat bebasnya ini, maka Aquarius memiliki pemikiran yang terbuka, wawasan yang luas dan bijaksana. Karakter Aquarius adalah penuh kharisma sehingga menarik kehidupan orang lain.';
+        } else if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) {
+            zodiacSign = 'Pisces';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/pisces.jpg';
+            zodiacDescription = 'Pisces memiliki lambang ikan dan elemen air. Pisces memiliki ciri yang mudah terharu dan labil. Karakternya dikenal sebagai tanda yang yang cantik luar dan dalam. Pisces mudah sekali berempati, menempatkan dirinya di posisi orang lain sehingga ia bisa lebih memahami dan merasakan penderitaan orang lain. Seorang Pisces juga sangat kreatif, peka terhadap orang lain dan tidak pernah mementingkan dirinya sendiri.';
+        } else if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
+            zodiacSign = 'Aries';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/aries.jpg';
+            zodiacDescription = 'Aries memiliki lambang domba dan berelemen api. Sifat murah hati dari Aries sering kali menjadikannya sosok panutan. Meskipun memiliki sifat yang keras, Aries selalu rela untuk berkorban bagi orang terdekatnya. Tak hanya itu, karakter Aries yang mudah bergaul dengan banyak orang, membuatnya memiliki kesempatan untuk sukses yang tinggi. Kamu cocok untuk bekerja di berbagai banyak bidang.';
+        } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
+            zodiacSign = 'Taurus';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/taurus.jpg';
+            zodiacDescription = 'Taurus. Memiliki lambang Banteng atau Sapi Jantan. Taurus berelemen tanah. Taurus memiliki sifat yang cerdas dan memahami semua konsekuensi atas pilihan hidupnya. Taurus mudah marah, apabila kemarahannya memuncak maka jangan pernah mencoba menasehatinya karena justru Taurus semakin membencinya. Menjadi jurnalistik, pelukis, dan pekerjaan yang berhubungan dengan seni sangat cocok untuk Taurus.';
+        } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
+            zodiacSign = 'Gemini';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/gemini.jpg';
+            zodiacDescription = 'Gemini Memiliki lambang saudara kembar dan elemen angin. Sifatnya yang tidak mudah ditebak, seringkali membuat bingung orang terdekatnya. Kecerdasan Gemini adalah daya tarik utama pemilik zodiak ini. Pesonanya yang menawan membuatnya banyak dikagumi oleh orang terdekatnya, meskipun sering bersikap kebalikannya di depan orang tersayangnya sekali pun. Gemini memiliki ciri tidak mudah puas dengan hidupnya, ia akan selalu mencari yang terbaik untuk dirinya.';
+        } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
+            zodiacSign = 'Cancer';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/cancer.jpg';
+            zodiacDescription = 'Cancer Lambang dari zodiak ini adalah kepiting. Sifat Cancer adalah memiliki welas asih yang tinggi. Ia rela melakukan apa saja agar orang terdekatnya bahagia. Gemar mengejar hal kecil dan mengabaikan hal-hal besar adalah ciri dari Cancer. Tak hanya itu, Cancer memiliki sifat yang setia. Ia sangat memedulikan pasangan dan keluarga. Kebahagiaan orang terdekatnya adalah sumber bahagianya.';
+        } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
+            zodiacSign = 'Leo';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/leo.jpg';
+            zodiacDescription = 'Lambang zodiak Leo adalah singa dan berelemen api. Tak heran, Leo memiliki sifat yang suka memerintah. Ia tak segan marah kepada siapa saja yang menghalangi hidupnya. Bagi Leo memberi nasihat kepada orang lain adalah kesenangan baginya, meskipun belum tentu ia menjalaninya. Leo sangat cocok dijadikan seorang pemimpin, kemampuannya beradaptasi membuatnya bisa bekerja di berbagai bidang.';
+        } else if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) {
+            zodiacSign = 'Virgo';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/virgo.jpg';
+            zodiacDescription = 'Virgo Memiliki Lambang zodiak Virgo adalah sang perawan dan memiliki elemen tanah. Sifat Virgo adalah penurut dan berhati lembut. Ia menyukai ketenangan. Ciri khas Virgo adalah sifat egois dan keras kepalanya. Ia selalu mengutamakan kepentingannya dan tidak peduli dengan orang lain. Meskipun demikian, Virgo sangat teliti dan bisa menyimpan rahasia dengan baik. Tak heran, Virgo adalah tujuan untuk teman terdekatnya saat butuh didengarkan.';
+        } else if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) {
+            zodiacSign = 'Libra';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/libra.jpg';
+            zodiacDescription = 'Lambang zodiak Libra adalah timbangan dan berelemen udara. Timbangan mewakili sisi kehidupan yang seimbang, teratur, setara, dan adil. Ini sangat merepresentasikan pribadi Libra. Ia tahu cara menemukan keseimbangan dan harmoni dalam hidup. Dalam hal apapun, Libra akan selalu menjadi sosok yang seimbang dan melakukan hal sama rata. Selain itu, Libra juga dikenal sebagai penasihat yang baik.';
+        } else if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) {
+            zodiacSign = 'Scorpio';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/scorpio.jpg';
+            zodiacDescription = 'Lambang zodiak Scorpio adalah kalajengking dan memiliki elemen air. Sifat Scorpio dikenal sebagai sosok yang tekun, ambisius, dan pekerja keras. Ia juga sangat dermawan, rendah hati dan setia kawan. Karakter yang paling kuat dari Scorpio adalah intuisinya yang selalu tepat dan selalu mengikuti kata hati. Seorang Scorpio dapat dengan mudah membuat keputusan karena kekuatan instingnya ini.';
+        } else if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) {
+            zodiacSign = 'Sagitarius';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/sagitarius.jpg';
+            zodiacDescription = 'Sagitarius memiliki lambang pemanah dan berelemen api. Karakter Sagitarius memiliki kepribadian yang bebas dan suka berpetualang. Sagitarius punya kemampuan membuat hal paling membosankan menjadi hal yang paling menyenangkan. Sisi kepribadian yang hangat membuat orang lain merasa nyaman saat di dekatnya.';
+        } else if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
+            zodiacSign = 'Capricorn';
+            zodiacImage = 'https://preview-kly.akamaized.net/fimela/zodiak/capricorn.jpg';
+            zodiacDescription = 'Capricorn Ia memiliki lambang kambing laut dan elemen tanah. Karakter Capricorn sangat realistis dan berpikir kritis. Ciri utamanya adalah suka pekerja keras untuk mencapai tujuan hidupnya. Capricorn memiliki tekad yang kuat untuk melakukan segala sesuatu.';
+        }
+
+        // Menampilkan hasil zodiak
+        document.getElementById('zodiacResult').innerText = 'Zodiak kamu adalah: ' + zodiacSign;
+
+        // Menampilkan gambar dan deskripsi
+        const zodiacImageElement = document.getElementById('zodiacImage');
+        zodiacImageElement.src = zodiacImage;
+        zodiacImageElement.style.display = 'block'; // Menampilkan gambar
+        
+        const zodiacTextElement = document.getElementById('zodiacText');
+        zodiacTextElement.innerText = zodiacDescription;
+        zodiacTextElement.style.display = 'block'; // Menampilkan deskripsi
+    }
+</script>
+
 </body>
 </html>

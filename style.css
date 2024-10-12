@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://imagesvs.oneindia.com/img/2023/12/horoscope-og-20231202230401.jpg') no-repeat center center/cover; /* Ganti dengan link gambar latar bertema zodiak */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Overlay gradasi agar teks tetap jelas di atas gambar */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Overlay hitam transparan */
+    z-index: -1; /* Pastikan overlay berada di bawah konten */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparan agar menyatu dengan gambar */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+    backdrop-filter: blur(5px); /* Efek blur di belakang elemen */
+}
+
+h2 {
+    color: #FFD700; /* Warna emas untuk teks */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    color: #FFF;
+}
+
+input {
+    padding: 12px;
+    margin: 15px 0;
+    width: 100%;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+button {
+    padding: 12px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #ff4757;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.zodiac-info {
+    text-align: top;
+    margin-top: 50px;
+}
+
+.zodiac-info img {
+    border-radius: 50%;
+    border: 5px solid #FFD700; /* Warna emas */
+}
+
+.zodiac-info p {
+    margin-top: 10px;
+    color: #FFF;
+    font-size: 16px;
+}
+
+#zodiacImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px; /* Atur sesuai ukuran gambar yang diinginkan */
+    height: auto;
+}
+
+#zodiacText {
+    width: 350px; /* Tentukan lebar maksimum yang sesuai */
+    word-wrap: break-word; /* Membuat teks terputus jika terlalu panjang */
+    white-space: normal; /* Membungkus teks di dalam baris */
+    margin: 10px auto; /* Untuk memberi jarak dan memusatkan elemen */
+    text-align: center; /* Membuat teks lebih rapi di tengah */
+}
+
+footer {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 0px;
+    color: #888; /* Warna abu-abu untuk teks */
+}
+
+footer p {
+    margin: 1;
+}
